@@ -19,25 +19,31 @@ This tool scans your `.claude/commands/`, `.claude/agents/`, and `context/` fold
 
 ## Requirements
 
+**Python version (`token_audit.py`)**
 - Python 3.8+
 - No extra packages needed (uses built-in libraries)
-- Optional: install `tiktoken` for accurate token counts instead of approximation
+- Optional: install `tiktoken` for accurate token counts
 
 ```bash
 pip install tiktoken
 ```
 
+**JavaScript version (`token_audit.js`)**
+- Node.js 14+
+- No npm install needed — uses only built-in Node.js modules
+
 ---
 
 ## Setup
 
-1. Copy `token_audit.py` into your project root (the folder that contains `.claude/` and `context/`)
+1. Copy `token_audit.py` **or** `token_audit.js` into your project root (the folder that contains `.claude/` and `context/`)
 2. Run it
 
 ---
 
 ## Usage
 
+### Python
 ```bash
 # Full audit — scans .claude/commands/, .claude/agents/, context/
 py token_audit.py
@@ -56,6 +62,27 @@ py token_audit.py --no-bloat
 
 # Machine-readable JSON output
 py token_audit.py --json
+```
+
+### JavaScript
+```bash
+# Full audit
+node token_audit.js
+
+# Show only the 10 heaviest files
+node token_audit.js --top 10
+
+# Audit a specific directory
+node token_audit.js --dir .claude/agents
+
+# Audit a specific file
+node token_audit.js --file .claude/agents/editor.md
+
+# Summary only
+node token_audit.js --no-bloat
+
+# Machine-readable JSON output
+node token_audit.js --json
 ```
 
 ---
